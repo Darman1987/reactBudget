@@ -82,20 +82,6 @@ export const AppReducer = (state, action) => {
                 return state;
             }
 
-            const otherExpensesTotal = state.expenses.reduce((total, expense) => {
-                if (expense.id === id) {
-                    return total;
-                }
-                return total + expense.cost;
-            }, 0);
-
-            if (otherExpensesTotal + cost > state.budget) {
-                return {
-                    ...state,
-                    message: 'Cannot set allocation. Out of funds.',
-                };
-            }
-
             return {
                 ...state,
                 expenses: state.expenses.map((expense) => {

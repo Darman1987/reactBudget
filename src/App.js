@@ -8,8 +8,6 @@ import ExpenseList from './components/ExpenseList';
 import RemainingBudget from './components/Remaining';
 import Dropdown from './components/Dropdown';
 import MessagePopup from './components/MessagePopup';
-import DepartmentSettings from './components/DepartmentSettings';
-import HelpButton from './components/HelpButton';
 
 const App = () => {
     return (
@@ -17,10 +15,6 @@ const App = () => {
             <div className='container app-shell py-4'>
                 <div className='d-flex justify-content-between align-items-center app-header'>
                     <h1 className='mb-0'>Budget Allocation</h1>
-                    <div className='header-actions'>
-                        <HelpButton />
-                        <DepartmentSettings />
-                    </div>
                 </div>
                 <div className='row g-3 mt-2'>
                     <div className='col-12 col-md-6 col-xl-3'>

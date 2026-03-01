@@ -2,6 +2,7 @@
 import React, { useContext } from 'react';
 import ExpenseItem from './ExpenseItem';
 import { AppContext } from '../context/AppContext';
+import AddDepartmentButton from './AddDepartmentButton';
 
 const ExpenseList = () => {
     const { expenses } = useContext(AppContext);
@@ -10,6 +11,7 @@ const ExpenseList = () => {
         <>
         <div className='d-flex justify-content-between align-items-center mt-3 mb-2 allocation-title-wrap'>
             <h3 className='mb-0'>Allocations</h3>
+            <AddDepartmentButton />
         </div>
         <div className='allocation-table-card'>
         <table className='table table-modern mb-0'>
@@ -17,6 +19,7 @@ const ExpenseList = () => {
             <tr>
               <th scope="col">Department</th>
               <th scope="col">Allocation</th>
+              <th scope="col">Actions</th>
             </tr>
           </thead>
             <tbody>

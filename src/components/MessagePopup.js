@@ -4,6 +4,18 @@ import { AppContext } from '../context/AppContext';
 const MessagePopup = () => {
     const { message, dispatch } = useContext(AppContext);
 
+    const closeAndFocusBudget = () => {
+        dispatch({ type: 'CLEAR_MESSAGE' });
+
+        setTimeout(() => {
+            const budgetInput = document.getElementById('budget');
+            if (!budgetInput) {
+                return;
+            }
+            budgetInput.focus();
+        }, 0);
+    };
+
     if (!message) {
         return null;
     }
@@ -17,7 +29,7 @@ const MessagePopup = () => {
                         type='button'
                         className='close message-popup-close'
                         aria-label='Close'
-                        onClick={() => dispatch({ type: 'CLEAR_MESSAGE' })}
+                        onClick={closeAndFocusBudget}
                     >
                         <span aria-hidden='true'>&times;</span>
                     </button>
@@ -29,7 +41,7 @@ const MessagePopup = () => {
                     <button
                         type='button'
                         className='btn btn-danger'
-                        onClick={() => dispatch({ type: 'CLEAR_MESSAGE' })}
+                        onClick={closeAndFocusBudget}
                     >
                         OK
                     </button>
