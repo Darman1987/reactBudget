@@ -1,52 +1,55 @@
 
-import React, { useContext } from 'react';
-import { TiDelete } from 'react-icons/ti';
-import { FaMinusCircle, FaPlusCircle} from 'react-icons/fa';
+import React, { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 
 const ExpenseItem = (props) => {
-    const { currency,dispatch } = useContext(AppContext);
+    const { dispatch, budget } = useContext(AppContext);
+    const [allocationInput, setAllocationInput] = useState(props.cost.toString());
 
-    const handleDeleteExpense = () => {
+    useEffect(() => {
+        setAllocationInput(props.cost.toString());
+    }, [props.cost]);
+
+    const updateAllocation = () => {
+        if (budget <= 0) {
+            return;
+        }
+
+        const parsedCost = parseInt(allocationInput, 10);
+        if (Number.isNaN(parsedCost)) {
+            setAllocationInput(props.cost.toString());
+            return;
+        }
+
         dispatch({
-            type: 'DELETE_EXPENSE',
-            payload: props.id,
+            type: 'SET_EXPENSE_ALLOCATION',
+            payload: {
+                id: props.id,
+                cost: parsedCost,
+            },
         });
     };
-
-    const increaseAllocation = (name) => {
-        const expense = {
-            name: name,
-            cost: 10,
-        };
-
-        dispatch({
-            type: 'ADD_EXPENSE',
-            payload: expense
-        });
-
-    }
-
-    const decreaseAllocation = (name) => {
-        const expense = {
-            name: name,
-            cost: 10,
-        };
-
-        dispatch({
-            type: 'RED_EXPENSE',
-            payload: expense
-        });
-
-    }
 
     return (
         <tr>
         <td>{props.name}</td>
-        <td>{currency+props.cost}</td>
-        <td><FaPlusCircle onClick={event=> increaseAllocation(props.name)} color="green"></FaPlusCircle></td>      
-        <td><FaMinusCircle onClick={event=> decreaseAllocation(props.name)} color="red"></FaMinusCircle></td>      
-        <td><TiDelete size='1.5em' onClick={handleDeleteExpense}></TiDelete></td>
+        <td>
+            <input
+                type="number"
+                min="0"
+                className="form-control form-control-sm"
+                value={allocationInput}
+                disabled={budget <= 0}
+                placeholder={budget <= 0 ? 'Set budget first' : '0'}
+                onChange={(event) => setAllocationInput(event.target.value)}
+                onBlur={updateAllocation}
+                onKeyDown={(event) => {
+                    if (event.key === 'Enter') {
+                        event.currentTarget.blur();
+                    }
+                }}
+            />
+        </td>
         </tr>
     );
 };
