@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --bg-0: #0b1020;
-  --bg-1: #121a31;
-  --bg-2: #1a2445;
-  --surface: rgba(19, 28, 52, 0.84);
-  --surface-strong: rgba(15, 22, 42, 0.95);
-  --line: rgba(148, 163, 184, 0.26);
-  --text: #e8edff;
-  --muted: #9fb0d6;
-  --primary: #56ccf2;
-  --primary-2: #2f80ed;
+  --bg-0: #1f2848;
+  --bg-1: #2a345b;
+  --bg-2: #374473;
+  --surface: rgba(48, 59, 98, 0.82);
+  --surface-strong: rgba(42, 52, 88, 0.9);
+  --line: rgba(148, 163, 184, 0.28);
+  --text: #f1f5ff;
+  --muted: #a9b7db;
+  --primary: #22d3ee;
+  --primary-2: #6366f1;
   --success: #34d399;
   --danger: #fb7185;
   --warning: #fbbf24;
@@ -31,10 +31,10 @@ body {
   font-family: 'Manrope', 'Segoe UI', sans-serif;
   color: var(--text);
   background:
-    radial-gradient(1000px 500px at 0% 0%, rgba(86, 204, 242, 0.18), transparent 60%),
-    radial-gradient(900px 500px at 100% 0%, rgba(167, 139, 250, 0.18), transparent 62%),
-    radial-gradient(900px 600px at 50% 100%, rgba(47, 128, 237, 0.16), transparent 65%),
-    linear-gradient(180deg, var(--bg-1) 0%, var(--bg-0) 70%);
+    radial-gradient(1000px 500px at 0% 0%, rgba(34, 211, 238, 0.2), transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, rgba(99, 102, 241, 0.2), transparent 62%),
+    radial-gradient(900px 600px at 50% 100%, rgba(139, 92, 246, 0.15), transparent 65%),
+    linear-gradient(180deg, #34406d 0%, var(--bg-0) 78%);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -53,7 +53,7 @@ code {
   font-weight: 800;
   letter-spacing: -0.02em;
   color: #f4f7ff;
-  text-shadow: 0 8px 32px rgba(86, 204, 242, 0.24);
+  text-shadow: 0 8px 32px rgba(34, 211, 238, 0.3);
 }
 
 .header-actions {
@@ -67,7 +67,7 @@ code {
   border: 1px solid var(--line);
   border-radius: 16px;
   box-shadow:
-    0 18px 40px rgba(2, 8, 23, 0.45),
+    0 16px 34px rgba(2, 8, 23, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(8px);
   min-height: 96px;
@@ -84,7 +84,7 @@ code {
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #c5d3ff;
+  color: #c7d2fe;
 }
 
 .metric-label {
@@ -125,8 +125,8 @@ code {
 .metric-card-currency .form-select:focus,
 .metric-card-budget .form-control:focus,
 .allocation-input:focus {
-  border-color: rgba(86, 204, 242, 0.8);
-  box-shadow: 0 0 0 0.2rem rgba(86, 204, 242, 0.2);
+  border-color: rgba(34, 211, 238, 0.8);
+  box-shadow: 0 0 0 0.2rem rgba(34, 211, 238, 0.22);
 }
 
 .metric-card-success {
@@ -144,9 +144,9 @@ code {
 }
 
 .metric-card-info {
-  border-color: rgba(96, 165, 250, 0.4);
-  background: linear-gradient(180deg, rgba(37, 99, 235, 0.23) 0%, rgba(19, 28, 52, 0.85) 100%);
-  color: #bfdbfe;
+  border-color: rgba(129, 140, 248, 0.46);
+  background: linear-gradient(180deg, rgba(79, 70, 229, 0.27) 0%, rgba(19, 28, 52, 0.85) 100%);
+  color: #c7d2fe;
   font-weight: 600;
 }
 
@@ -162,12 +162,12 @@ code {
   background: var(--surface-strong);
   border: 1px solid var(--line);
   border-radius: 16px;
-  box-shadow: 0 16px 34px rgba(2, 8, 23, 0.5);
+  box-shadow: 0 14px 30px rgba(2, 8, 23, 0.38);
   overflow: hidden;
 }
 
 .table-modern thead {
-  background: linear-gradient(90deg, rgba(47, 128, 237, 0.35) 0%, rgba(86, 204, 242, 0.2) 100%);
+  background: linear-gradient(90deg, rgba(99, 102, 241, 0.35) 0%, rgba(34, 211, 238, 0.2) 100%);
 }
 
 .table-modern thead th {
@@ -189,7 +189,7 @@ code {
 }
 
 .table-modern tbody tr:hover {
-  background: rgba(47, 128, 237, 0.08);
+  background: rgba(99, 102, 241, 0.1);
 }
 
 .allocation-input:disabled {
@@ -198,16 +198,16 @@ code {
 }
 
 .btn-outline-secondary {
-  border-color: rgba(86, 204, 242, 0.85);
-  color: #bfeeff;
-  background: linear-gradient(180deg, rgba(56, 189, 248, 0.18) 0%, rgba(47, 128, 237, 0.14) 100%);
-  box-shadow: 0 8px 20px rgba(47, 128, 237, 0.22);
+  border-color: rgba(34, 211, 238, 0.9);
+  color: #cffafe;
+  background: linear-gradient(180deg, rgba(34, 211, 238, 0.2) 0%, rgba(99, 102, 241, 0.16) 100%);
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.24);
 }
 
 .btn-outline-secondary:hover {
-  border-color: rgba(86, 204, 242, 1);
+  border-color: rgba(34, 211, 238, 1);
   color: #ffffff;
-  background: linear-gradient(180deg, rgba(56, 189, 248, 0.3) 0%, rgba(47, 128, 237, 0.26) 100%);
+  background: linear-gradient(180deg, rgba(34, 211, 238, 0.32) 0%, rgba(99, 102, 241, 0.28) 100%);
 }
 
 .settings-modal-backdrop,
@@ -266,7 +266,7 @@ code {
   align-items: center;
   padding: 0.75rem 1rem;
   border-bottom: 1px solid rgba(148, 163, 184, 0.2);
-  background: linear-gradient(90deg, rgba(167, 139, 250, 0.17) 0%, rgba(56, 189, 248, 0.16) 100%);
+  background: linear-gradient(90deg, rgba(99, 102, 241, 0.2) 0%, rgba(34, 211, 238, 0.16) 100%);
   color: #edf2ff;
 }
 
@@ -309,13 +309,13 @@ code {
 }
 
 .settings-modal-body .btn-primary {
-  background: linear-gradient(180deg, #56ccf2 0%, #2f80ed 100%);
-  border-color: #2f80ed;
+  background: linear-gradient(180deg, #22d3ee 0%, #6366f1 100%);
+  border-color: #6366f1;
 }
 
 .settings-modal-body .btn-primary:hover {
-  background: linear-gradient(180deg, #38bdf8 0%, #2563eb 100%);
-  border-color: #2563eb;
+  background: linear-gradient(180deg, #06b6d4 0%, #4f46e5 100%);
+  border-color: #4f46e5;
 }
 
 .settings-modal-body .btn-success {
