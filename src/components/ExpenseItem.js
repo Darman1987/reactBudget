@@ -58,9 +58,10 @@ const ExpenseItem = (props) => {
 
     const deleteDepartment = () => {
         dispatch({
-            type: 'DELETE_DEPARTMENT',
+            type: 'REQUEST_DELETE_DEPARTMENT',
             payload: {
                 id: props.id,
+                name: props.name,
             },
         });
     };

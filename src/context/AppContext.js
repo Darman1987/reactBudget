@@ -174,6 +174,40 @@ export const AppReducer = (state, action) => {
                 message: null,
             };
         }
+        case 'REQUEST_DELETE_DEPARTMENT':
+            return {
+                ...state,
+                confirmDelete: {
+                    id: action.payload.id,
+                    name: action.payload.name,
+                },
+                message: null,
+            };
+        case 'CANCEL_DELETE_DEPARTMENT':
+            return {
+                ...state,
+                confirmDelete: null,
+            };
+        case 'CONFIRM_DELETE_DEPARTMENT': {
+            if (!state.confirmDelete) {
+                return state;
+            }
+
+            if (state.expenses.length <= 1) {
+                return {
+                    ...state,
+                    confirmDelete: null,
+                    message: 'At least one department is required.',
+                };
+            }
+
+            return {
+                ...state,
+                expenses: state.expenses.filter((expense) => expense.id !== state.confirmDelete.id),
+                confirmDelete: null,
+                message: null,
+            };
+        }
         case 'SET_MESSAGE':
             return {
                 ...state,
@@ -206,6 +240,7 @@ const initialState = {
         { id: '₹', name: 'Rupee' },
     ],
     message: null,
+    confirmDelete: null,
 };
 
 const STORAGE_KEY = 'budget_allocation_state_v1';
@@ -234,6 +269,7 @@ const getInitialState = () => {
             currency: typeof parsed.currency === 'string' ? parsed.currency : initialState.currency,
             expenses: parsedExpenses,
             message: null,
+            confirmDelete: null,
         };
     } catch (error) {
         return initialState;
@@ -277,6 +313,7 @@ export const AppProvider = (props) => {
                 currencies: state.currencies,
                 currency: state.currency,
                 message: state.message,
+                confirmDelete: state.confirmDelete,
             }}
         >
             {props.children}
