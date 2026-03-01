@@ -6,9 +6,9 @@ const Remaining = () => {
     const totalExpenses = expenses.reduce((total, item) => {
         return (total = total + item.cost);
     }, 0);
-    const alertType = totalExpenses > budget ? 'alert-danger' : 'alert-success';
+    const cardType = totalExpenses > budget ? 'metric-card-danger' : 'metric-card-success';
     return (
-        <div className={`alert ${alertType}`}>
+        <div className={`metric-card h-100 ${cardType}`}>
             <span>Remaining: {currency+(budget - totalExpenses)}</span>
         </div>
     );

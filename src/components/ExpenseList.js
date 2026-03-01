@@ -4,16 +4,16 @@ import ExpenseItem from './ExpenseItem';
 import { AppContext } from '../context/AppContext';
 
 const ExpenseList = () => {
-    const { expenses, budget } = useContext(AppContext);
+    const { expenses } = useContext(AppContext);
     
     return (
         <>
-        <div className='d-flex justify-content-between align-items-center mt-3 mb-2'>
-            <h3 className='mb-0'>Step 2: Add allocations by department</h3>
-            {budget <= 0 && <small className='text-danger'>Set a budget first to enable allocation inputs.</small>}
+        <div className='d-flex justify-content-between align-items-center mt-3 mb-2 allocation-title-wrap'>
+            <h3 className='mb-0'>Allocations</h3>
         </div>
-        <table className='table'>
-              <thead className="thead-light">
+        <div className='allocation-table-card'>
+        <table className='table table-modern mb-0'>
+              <thead>
             <tr>
               <th scope="col">Department</th>
               <th scope="col">Allocation</th>
@@ -25,6 +25,7 @@ const ExpenseList = () => {
             ))}
             </tbody>
         </table>
+        </div>
         </>
     );
 };

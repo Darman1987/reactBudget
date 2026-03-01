@@ -37,7 +37,7 @@ const ExpenseItem = (props) => {
             <input
                 type="number"
                 min="0"
-                className="form-control form-control-sm"
+                className="form-control form-control-sm allocation-input"
                 value={allocationInput}
                 disabled={budget <= 0}
                 placeholder={budget <= 0 ? 'Set budget first' : '0'}

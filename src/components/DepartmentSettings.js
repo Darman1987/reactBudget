@@ -108,7 +108,7 @@ const DepartmentSettings = () => {
                                         </button>
                                         <button
                                             type='button'
-                                            className='btn btn-sm btn-outline-danger'
+                                            className='btn btn-sm btn-outline-danger settings-delete-btn'
                                             onClick={() => handleDeleteDepartment(expense.id)}
                                         >
                                             Delete

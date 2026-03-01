@@ -9,34 +9,35 @@ import RemainingBudget from './components/Remaining';
 import Dropdown from './components/Dropdown';
 import MessagePopup from './components/MessagePopup';
 import DepartmentSettings from './components/DepartmentSettings';
+import HelpButton from './components/HelpButton';
 
 const App = () => {
     return (
         <AppProvider>
-            <div className='container'>
-                <div className='d-flex justify-content-between align-items-center mt-3'>
-                    <h1 className='mb-0'>Company's Budget Allocation</h1>
-                    <DepartmentSettings />
+            <div className='container app-shell py-4'>
+                <div className='d-flex justify-content-between align-items-center app-header'>
+                    <h1 className='mb-0'>Budget Allocation</h1>
+                    <div className='header-actions'>
+                        <HelpButton />
+                        <DepartmentSettings />
+                    </div>
                 </div>
-                <p className='text-muted mb-2'>
-                    First define the total budget, then distribute that amount across departments.
-                </p>
-                <div className='row mt-3'>
-                    <div className='col-sm'>
+                <div className='row g-3 mt-2'>
+                    <div className='col-12 col-md-6 col-xl-3'>
                         <Budget />
                     </div>
-                    <div className='col-sm'>
+                    <div className='col-12 col-md-6 col-xl-3'>
                         <RemainingBudget />
                     </div>
-                    <div className='col-sm'>
+                    <div className='col-12 col-md-6 col-xl-3'>
                         <ExpenseTotal />
                     </div>
-                    <div className='col-sm'>
+                    <div className='col-12 col-md-6 col-xl-3'>
                         <Dropdown />
                     </div>
                 </div>
-                <div className='row '>
-                    <div className='col-sm'>
+                <div className='row mt-3'>
+                    <div className='col-12'>
                         <ExpenseList />
                     </div>
                 </div>

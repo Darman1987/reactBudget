@@ -63,10 +63,9 @@ const Budget = () => {
     };
     
     return (
-        <div className='alert alert-secondary'>
-            <div className='mb-2 font-weight-bold'>Step 1: Set your initial budget</div>
+        <div className='metric-card metric-card-budget h-100'>
             <div className='input-group'>
-            <span className='pt-2'>Budget:</span>
+            <span className='pt-2 metric-label'>Budget:</span>
             <div className="input-group-prepend"  style={{ marginLeft: '1rem' }}>
                         <span className="input-group-text" >{currency}</span>
             </div>
@@ -87,9 +86,6 @@ const Budget = () => {
             }}>
             </input>
             </div>
-            <small className='text-muted d-block mt-2'>
-                Start with a total budget, then fill each department allocation below.
-            </small>
         </div>
     );
 };

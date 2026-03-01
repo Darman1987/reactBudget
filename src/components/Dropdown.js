@@ -14,13 +14,14 @@ const Dropdown = () => {
     };
 
     return (
-        
-            <select class="form-select" onChange={(event) => handleCurrency(event.target.value)}>
+        <div className='metric-card metric-card-currency h-100'>
+            <label className='metric-title mb-2 d-block'>Currency</label>
+            <select className="form-select" onChange={(event) => handleCurrency(event.target.value)}>
                     {currencies.map((currency) => (
-                    <option value={currency.id}> {currency.id+" "+currency.name}</option>
+                    <option key={currency.id} value={currency.id}> {currency.id+" "+currency.name}</option>
                 ))}
             </select>
-        
+        </div>
     );
 };
 
