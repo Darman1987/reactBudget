@@ -48,7 +48,9 @@ const Budget = () => {
             setBudgetInput('');
             return;
         }
+
         setBudgetInput(value);
+        increaseBudget(value);
     };
 
     const commitBudget = () => {

@@ -24,15 +24,18 @@ const ExpenseItem = (props) => {
         });
     };
 
-    const updateAllocation = () => {
+    const updateAllocation = (nextValue) => {
         if (budget <= 0) {
             notifyBudgetRequired();
             return;
         }
 
-        const parsedCost = parseInt(allocationInput, 10);
+        if (nextValue === '') {
+            return;
+        }
+
+        const parsedCost = parseInt(nextValue, 10);
         if (Number.isNaN(parsedCost) || parsedCost < 0) {
-            setAllocationInput(props.cost.toString());
             return;
         }
 
@@ -97,14 +100,20 @@ const ExpenseItem = (props) => {
                         notifyBudgetRequired();
                         return;
                     }
-                    setAllocationInput(event.target.value);
+                    const nextValue = event.target.value;
+                    setAllocationInput(nextValue);
+                    updateAllocation(nextValue);
                 }}
                 onFocus={() => {
                     if (budget <= 0) {
                         notifyBudgetRequired();
                     }
                 }}
-                onBlur={updateAllocation}
+                onBlur={() => {
+                    if (allocationInput === '') {
+                        setAllocationInput(props.cost.toString());
+                    }
+                }}
                 onKeyDown={(event) => {
                     if (event.key === 'Enter') {
                         event.currentTarget.blur();
