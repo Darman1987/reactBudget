@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 const Budget = () => {
-    const { budget, expenses, currency, dispatch} = useContext(AppContext);
+    const { budget, expenses, currency, currencies, dispatch} = useContext(AppContext);
     const [budgetInput, setBudgetInput] = useState(budget.toString());
     
     const totalExpenses = expenses.reduce((total, item) => {
@@ -61,13 +61,31 @@ const Budget = () => {
         }
         increaseBudget(budgetInput);
     };
+
+    const cycleCurrency = () => {
+        const currentIndex = currencies.findIndex((item) => item.id === currency);
+        const nextIndex = currentIndex >= 0 ? (currentIndex + 1) % currencies.length : 0;
+
+        dispatch({
+            type: 'UPDATE_CURRENCY',
+            payload: currencies[nextIndex].id,
+        });
+    };
     
     return (
-        <div className='metric-card metric-card-budget h-100'>
+        <div className='metric-card compact-mobile metric-card-budget h-100'>
             <div className='input-group'>
             <span className='pt-2 metric-label'>Budget:</span>
             <div className="input-group-prepend"  style={{ marginLeft: '1rem' }}>
-                        <span className="input-group-text" >{currency}</span>
+                        <button
+                            type="button"
+                            className="input-group-text budget-currency-btn"
+                            onClick={cycleCurrency}
+                            title="Change currency"
+                            aria-label="Change currency"
+                        >
+                            {currency}
+                        </button>
             </div>
             <input className="form-control"
             required='required'

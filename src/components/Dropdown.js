@@ -14,7 +14,7 @@ const Dropdown = () => {
     };
 
     return (
-        <div className='metric-card metric-card-currency h-100'>
+        <div className='metric-card compact-mobile metric-card-currency h-100'>
             <label className='metric-title mb-2 d-block'>Currency</label>
             <select className="form-select" onChange={(event) => handleCurrency(event.target.value)}>
                     {currencies.map((currency) => (

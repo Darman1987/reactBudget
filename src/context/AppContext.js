@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, useEffect, useReducer } from 'react';
 
 // The reducer updates global state based on action type.
 export const AppReducer = (state, action) => {
@@ -208,10 +208,42 @@ const initialState = {
     message: null,
 };
 
+const STORAGE_KEY = 'budget_allocation_state_v1';
+
+const getInitialState = () => {
+    if (typeof window === 'undefined') {
+        return initialState;
+    }
+
+    try {
+        const raw = window.localStorage.getItem(STORAGE_KEY);
+        if (!raw) {
+            return initialState;
+        }
+
+        const parsed = JSON.parse(raw);
+        const parsedExpenses = Array.isArray(parsed.expenses)
+            ? parsed.expenses.filter((item) => {
+                return item && typeof item.id === 'string' && typeof item.name === 'string' && typeof item.cost === 'number';
+            })
+            : initialState.expenses;
+
+        return {
+            ...initialState,
+            budget: typeof parsed.budget === 'number' ? parsed.budget : initialState.budget,
+            currency: typeof parsed.currency === 'string' ? parsed.currency : initialState.currency,
+            expenses: parsedExpenses,
+            message: null,
+        };
+    } catch (error) {
+        return initialState;
+    }
+};
+
 export const AppContext = createContext();
 
 export const AppProvider = (props) => {
-    const [state, dispatch] = useReducer(AppReducer, initialState);
+    const [state, dispatch] = useReducer(AppReducer, undefined, getInitialState);
     let remaining = 0;
 
     if (state.expenses) {
@@ -220,6 +252,20 @@ export const AppProvider = (props) => {
         }, 0);
         remaining = state.budget - totalExpenses;
     }
+
+    useEffect(() => {
+        if (typeof window === 'undefined') {
+            return;
+        }
+
+        const persistedState = {
+            budget: state.budget,
+            expenses: state.expenses,
+            currency: state.currency,
+        };
+
+        window.localStorage.setItem(STORAGE_KEY, JSON.stringify(persistedState));
+    }, [state.budget, state.expenses, state.currency]);
 
     return (
         <AppContext.Provider

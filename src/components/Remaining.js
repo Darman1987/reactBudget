@@ -8,7 +8,7 @@ const Remaining = () => {
     }, 0);
     const cardType = totalExpenses > budget ? 'metric-card-danger' : 'metric-card-success';
     return (
-        <div className={`metric-card h-100 ${cardType}`}>
+        <div className={`metric-card compact-mobile h-100 ${cardType}`}>
             <span>Remaining: {currency+(budget - totalExpenses)}</span>
         </div>
     );

@@ -7,7 +7,7 @@ const ExpenseTotal = () => {
         return (total += item.cost);
     }, 0);
     return (
-        <div className='metric-card metric-card-info h-100'>
+        <div className='metric-card compact-mobile metric-card-info h-100'>
             <span>Spent so far: {currency+totalExpenses}</span>
         </div>
     );

@@ -6,7 +6,6 @@ import Budget from './components/Budget';
 import ExpenseTotal from './components/ExpenseTotal';
 import ExpenseList from './components/ExpenseList';
 import RemainingBudget from './components/Remaining';
-import Dropdown from './components/Dropdown';
 import MessagePopup from './components/MessagePopup';
 
 const App = () => {
@@ -17,17 +16,14 @@ const App = () => {
                     <h1 className='mb-0'>Budget Allocation</h1>
                 </div>
                 <div className='row g-3 mt-2'>
-                    <div className='col-12 col-md-6 col-xl-3'>
+                    <div className='col-12 col-md-6 col-xl-4'>
                         <Budget />
                     </div>
-                    <div className='col-12 col-md-6 col-xl-3'>
+                    <div className='col-12 col-md-6 col-xl-4'>
                         <RemainingBudget />
                     </div>
-                    <div className='col-12 col-md-6 col-xl-3'>
+                    <div className='col-12 col-md-6 col-xl-4'>
                         <ExpenseTotal />
-                    </div>
-                    <div className='col-12 col-md-6 col-xl-3'>
-                        <Dropdown />
                     </div>
                 </div>
                 <div className='row mt-3'>
