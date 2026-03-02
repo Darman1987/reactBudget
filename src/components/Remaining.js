@@ -1,6 +1,7 @@
 
 import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext'; 
+import { formatCurrencyValue } from '../utils/currency';
 const Remaining = () => {
     const { expenses, budget, currency } = useContext(AppContext);
     const totalExpenses = expenses.reduce((total, item) => {
@@ -9,7 +10,7 @@ const Remaining = () => {
     const cardType = totalExpenses > budget ? 'metric-card-danger' : 'metric-card-success';
     return (
         <div className={`metric-card compact-mobile h-100 ${cardType}`}>
-            <span>Remaining: {currency+(budget - totalExpenses)}</span>
+            <span>Remaining: {formatCurrencyValue(currency, budget - totalExpenses)}</span>
         </div>
     );
 };

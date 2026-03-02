@@ -1,13 +1,16 @@
 
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 import { FiEdit2, FiTrash2, FiCheck } from 'react-icons/fi';
+import { formatWholeNumber, sanitizeDigits } from '../utils/currency';
 
 const ExpenseItem = (props) => {
     const { dispatch } = useContext(AppContext);
     const [allocationInput, setAllocationInput] = useState(props.cost.toString());
     const [departmentName, setDepartmentName] = useState(props.name);
     const [isEditing, setIsEditing] = useState(false);
+    const [isAllocationFocused, setIsAllocationFocused] = useState(false);
+    const departmentInputRef = useRef(null);
 
     useEffect(() => {
         setAllocationInput(props.cost.toString());
@@ -17,12 +20,21 @@ const ExpenseItem = (props) => {
         setDepartmentName(props.name);
     }, [props.name]);
 
+    useEffect(() => {
+        if (isEditing && departmentInputRef.current) {
+            departmentInputRef.current.focus();
+            departmentInputRef.current.select();
+        }
+    }, [isEditing]);
+
     const updateAllocation = (nextValue) => {
-        if (nextValue === '') {
+        const normalizedValue = sanitizeDigits(nextValue);
+
+        if (normalizedValue === '') {
             return;
         }
 
-        const parsedCost = parseInt(nextValue, 10);
+        const parsedCost = parseInt(normalizedValue, 10);
         if (Number.isNaN(parsedCost) || parsedCost < 0) {
             return;
         }
@@ -59,52 +71,20 @@ const ExpenseItem = (props) => {
 
     return (
         <tr>
-        <td>
-            {isEditing ? (
-                <input
-                    type="text"
-                    className="form-control form-control-sm"
-                    value={departmentName}
-                    onChange={(event) => setDepartmentName(event.target.value)}
-                    onKeyDown={(event) => {
-                        if (event.key === 'Enter') {
-                            saveDepartmentName();
-                        }
-                    }}
-                />
-            ) : (
-                props.name
-            )}
-        </td>
-        <td>
-            <input
-                type="number"
-                min="0"
-                className="form-control form-control-sm allocation-input"
-                value={allocationInput}
-                placeholder='0'
-                onChange={(event) => {
-                    const nextValue = event.target.value;
-                    setAllocationInput(nextValue);
-                    updateAllocation(nextValue);
-                }}
-                onBlur={() => {
-                    if (allocationInput === '') {
-                        setAllocationInput(props.cost.toString());
-                    }
-                }}
-                onKeyDown={(event) => {
-                    if (event.key === 'Enter') {
-                        event.currentTarget.blur();
-                    }
-                }}
-            />
-        </td>
         <td className="row-actions-cell">
+            <button
+                type="button"
+                className="btn btn-sm btn-outline-danger row-action-delete-btn action-icon-btn"
+                onClick={deleteDepartment}
+                aria-label="Delete department"
+                title="Delete"
+            >
+                <FiTrash2 size={16} />
+            </button>
             {isEditing ? (
                 <button
                     type="button"
-                    className="btn btn-sm btn-primary action-icon-btn"
+                    className="btn btn-sm btn-success action-icon-btn"
                     onClick={saveDepartmentName}
                     aria-label="Save department name"
                     title="Save"
@@ -122,15 +102,51 @@ const ExpenseItem = (props) => {
                     <FiEdit2 size={16} />
                 </button>
             )}
-            <button
-                type="button"
-                className="btn btn-sm btn-outline-danger row-action-delete-btn action-icon-btn"
-                onClick={deleteDepartment}
-                aria-label="Delete department"
-                title="Delete"
-            >
-                <FiTrash2 size={16} />
-            </button>
+        </td>
+        <td>
+            {isEditing ? (
+                <input
+                    ref={departmentInputRef}
+                    type="text"
+                    className="form-control form-control-sm"
+                    value={departmentName}
+                    onChange={(event) => setDepartmentName(event.target.value)}
+                    onBlur={saveDepartmentName}
+                    onKeyDown={(event) => {
+                        if (event.key === 'Enter') {
+                            saveDepartmentName();
+                        }
+                    }}
+                />
+            ) : (
+                props.name
+            )}
+        </td>
+        <td>
+            <input
+                type="text"
+                inputMode="numeric"
+                className="form-control form-control-sm allocation-input"
+                value={isAllocationFocused ? allocationInput : formatWholeNumber(allocationInput)}
+                placeholder='0'
+                onChange={(event) => {
+                    const nextValue = sanitizeDigits(event.target.value);
+                    setAllocationInput(nextValue);
+                    updateAllocation(nextValue);
+                }}
+                onFocus={() => setIsAllocationFocused(true)}
+                onBlur={() => {
+                    setIsAllocationFocused(false);
+                    if (allocationInput === '') {
+                        setAllocationInput(props.cost.toString());
+                    }
+                }}
+                onKeyDown={(event) => {
+                    if (event.key === 'Enter') {
+                        event.currentTarget.blur();
+                    }
+                }}
+            />
         </td>
         </tr>
     );

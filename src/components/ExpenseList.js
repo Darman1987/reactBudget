@@ -19,11 +19,11 @@ const ExpenseList = () => {
         </div>
         <div className='allocation-table-card'>
         <table className='table table-modern mb-0'>
-              <thead>
+          <thead>
             <tr>
+              <th scope="col">Actions</th>
               <th scope="col">Department</th>
               <th scope="col">Allocation</th>
-              <th scope="col">Actions</th>
             </tr>
           </thead>
             <tbody>

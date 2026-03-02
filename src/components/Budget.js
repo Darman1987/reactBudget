@@ -1,28 +1,24 @@
 
 import React, { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../context/AppContext';
+import { formatWholeNumber, sanitizeDigits } from '../utils/currency';
 const Budget = () => {
     const { budget, currency, currencies, dispatch} = useContext(AppContext);
     const [budgetInput, setBudgetInput] = useState(budget.toString());
+    const [isBudgetFocused, setIsBudgetFocused] = useState(false);
     
     useEffect(() => {
-        setBudgetInput(budget.toString());
-    }, [budget]);
+        if (!isBudgetFocused) {
+            setBudgetInput(budget.toString());
+        }
+    }, [budget, isBudgetFocused]);
 
     const increaseBudget = (value) => {
-        const parsedValue = Number(value);
+        const parsedValue = Number(sanitizeDigits(value));
         if (Number.isNaN(parsedValue) || parsedValue < 0) {
             return;
         }
         
-        if(parsedValue > 20000){
-            dispatch({
-                type: 'SET_MESSAGE',
-                payload: 'The value cannot exceed 20,000.',
-            });
-            return;
-        }
-
         dispatch({
             type: 'SET_BUDGET',
             payload: parsedValue
@@ -31,23 +27,28 @@ const Budget = () => {
     }
 
     const handleBudgetChange = (value) => {
-        if (value === '') {
+        const normalizedValue = sanitizeDigits(value);
+        if (normalizedValue === '') {
             setBudgetInput('');
             return;
         }
 
-        setBudgetInput(value);
-        increaseBudget(value);
+        setBudgetInput(normalizedValue);
+        increaseBudget(normalizedValue);
     };
 
     const commitBudget = () => {
+        setIsBudgetFocused(false);
+
         if (budgetInput === '') {
             dispatch({
                 type: 'SET_BUDGET',
                 payload: 0
             });
+            setBudgetInput('0');
             return;
         }
+
         increaseBudget(budgetInput);
     };
 
@@ -78,13 +79,13 @@ const Budget = () => {
             </div>
             <input className="form-control"
             required='required'
-            type='number'
+            type='text'
             id="budget"
-            step="10"
-            min="0"
-            value={budgetInput}
+            inputMode='numeric'
+            value={isBudgetFocused ? budgetInput : formatWholeNumber(budgetInput)}
             style={{ size: 10}}
             onChange={(event) => handleBudgetChange(event.target.value)}
+            onFocus={() => setIsBudgetFocused(true)}
             onBlur={commitBudget}
             onKeyDown={(event) => {
                 if (event.key === 'Enter') {

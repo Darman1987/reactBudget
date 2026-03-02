@@ -1,6 +1,7 @@
 
 import React, { useContext, useState } from 'react';
 import { AppContext } from '../context/AppContext';
+import { formatCurrencyValue } from '../utils/currency';
 
 const AllocationForm = (props) => {
     const { dispatch,remaining, currency  } = useContext(AppContext);
@@ -14,7 +15,7 @@ const AllocationForm = (props) => {
             if(cost > remaining) {
                 dispatch({
                     type: 'SET_MESSAGE',
-                    payload: `The value cannot exceed remaining funds ${currency}${remaining}.`,
+                    payload: `The value cannot exceed remaining funds ${formatCurrencyValue(currency, remaining)}.`,
                 });
                 setCost("");
                 return;

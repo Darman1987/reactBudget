@@ -188,6 +188,18 @@ code {
   vertical-align: middle;
 }
 
+.table-modern thead th:first-child,
+.table-modern tbody td:first-child {
+  width: 1%;
+  white-space: nowrap;
+  padding-right: 0.35rem;
+}
+
+.table-modern thead th:nth-child(2),
+.table-modern tbody td:nth-child(2) {
+  padding-left: 0.35rem;
+}
+
 .row-actions-cell {
   white-space: nowrap;
 }
@@ -331,6 +343,7 @@ code {
 .message-popup-footer {
   display: flex;
   justify-content: flex-end;
+  gap: 0.5rem;
   padding: 0.75rem 1rem 1rem 1rem;
 }
 
@@ -397,7 +410,7 @@ code {
 }
 
 .row-action-delete-btn {
-  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .reset-btn {
