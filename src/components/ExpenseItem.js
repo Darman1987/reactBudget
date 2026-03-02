@@ -4,7 +4,7 @@ import { AppContext } from '../context/AppContext';
 import { FiEdit2, FiTrash2, FiCheck } from 'react-icons/fi';
 
 const ExpenseItem = (props) => {
-    const { dispatch, budget } = useContext(AppContext);
+    const { dispatch } = useContext(AppContext);
     const [allocationInput, setAllocationInput] = useState(props.cost.toString());
     const [departmentName, setDepartmentName] = useState(props.name);
     const [isEditing, setIsEditing] = useState(false);
@@ -17,19 +17,7 @@ const ExpenseItem = (props) => {
         setDepartmentName(props.name);
     }, [props.name]);
 
-    const notifyBudgetRequired = () => {
-        dispatch({
-            type: 'SET_MESSAGE',
-            payload: 'Please define the initial budget first.',
-        });
-    };
-
     const updateAllocation = (nextValue) => {
-        if (budget <= 0) {
-            notifyBudgetRequired();
-            return;
-        }
-
         if (nextValue === '') {
             return;
         }
@@ -96,18 +84,9 @@ const ExpenseItem = (props) => {
                 value={allocationInput}
                 placeholder='0'
                 onChange={(event) => {
-                    if (budget <= 0) {
-                        notifyBudgetRequired();
-                        return;
-                    }
                     const nextValue = event.target.value;
                     setAllocationInput(nextValue);
                     updateAllocation(nextValue);
-                }}
-                onFocus={() => {
-                    if (budget <= 0) {
-                        notifyBudgetRequired();
-                    }
                 }}
                 onBlur={() => {
                     if (allocationInput === '') {

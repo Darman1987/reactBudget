@@ -156,6 +156,12 @@ code {
   padding-right: 0.75rem;
 }
 
+.allocation-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .allocation-table-card {
   background: var(--surface-strong);
   border: 1px solid var(--line);
@@ -345,6 +351,10 @@ code {
 
 .row-action-delete-btn {
   margin-left: 0.5rem;
+}
+
+.reset-btn {
+  white-space: nowrap;
 }
 
 .action-icon-btn {

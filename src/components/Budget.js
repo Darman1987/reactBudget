@@ -2,12 +2,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 const Budget = () => {
-    const { budget, expenses, currency, currencies, dispatch} = useContext(AppContext);
+    const { budget, currency, currencies, dispatch} = useContext(AppContext);
     const [budgetInput, setBudgetInput] = useState(budget.toString());
-    
-    const totalExpenses = expenses.reduce((total, item) => {
-        return (total += item.cost);
-    }, 0);
     
     useEffect(() => {
         setBudgetInput(budget.toString());
@@ -27,15 +23,6 @@ const Budget = () => {
             return;
         }
 
-        if(parsedValue < totalExpenses){
-            dispatch({
-                type: 'SET_MESSAGE',
-                payload: 'The budget cannot be lower than spending.',
-            });
-            return;
-        }
-        
-        
         dispatch({
             type: 'SET_BUDGET',
             payload: parsedValue

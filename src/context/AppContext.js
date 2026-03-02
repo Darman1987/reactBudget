@@ -218,6 +218,19 @@ export const AppReducer = (state, action) => {
                 ...state,
                 message: null,
             };
+        case 'RESET_ALL':
+            return {
+                ...state,
+                budget: 0,
+                expenses: state.expenses.map((expense) => {
+                    return {
+                        ...expense,
+                        cost: 0,
+                    };
+                }),
+                message: null,
+                confirmDelete: null,
+            };
         default:
             return state;
     }
