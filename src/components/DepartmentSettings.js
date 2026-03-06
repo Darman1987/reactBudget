@@ -56,17 +56,17 @@ const DepartmentSettings = () => {
                 type='button'
                 className='btn btn-outline-secondary btn-sm d-inline-flex align-items-center justify-content-center'
                 onClick={() => setIsOpen(true)}
-                aria-label='Open department settings'
-                title='Department settings'
+                aria-label='Open expense settings'
+                title='Expense settings'
             >
                 <FiSettings size={18} />
             </button>
 
             {isOpen && (
-                <div className='settings-modal-backdrop' role='dialog' aria-modal='true' aria-label='Department settings'>
+                <div className='settings-modal-backdrop' role='dialog' aria-modal='true' aria-label='Expense settings'>
                     <div className='settings-modal-card shadow-lg'>
                         <div className='settings-modal-header'>
-                            <h5 className='mb-0'>Department Settings</h5>
+                            <h5 className='mb-0'>Expense Settings</h5>
                             <button
                                 type='button'
                                 className='settings-close-btn'
@@ -78,7 +78,7 @@ const DepartmentSettings = () => {
                         </div>
 
                         <div className='settings-modal-body'>
-                            <p className='text-muted mb-3'>Rename departments or add new ones.</p>
+                            <p className='text-muted mb-3'>Rename expenses or add new ones.</p>
 
                             {expenses.map((expense) => (
                                 <div className='input-group mb-2' key={expense.id}>
@@ -120,14 +120,14 @@ const DepartmentSettings = () => {
                             <hr />
 
                             <label htmlFor='new-department' className='small text-muted mb-1 d-block'>
-                                Add department
+                                Add expense
                             </label>
                             <div className='input-group'>
                                 <input
                                     id='new-department'
                                     type='text'
                                     className='form-control form-control-sm'
-                                    placeholder='Department name'
+                                    placeholder='Expense name'
                                     value={newDepartmentName}
                                     onChange={(event) => setNewDepartmentName(event.target.value)}
                                     onKeyDown={(event) => {

@@ -76,7 +76,7 @@ const ExpenseItem = (props) => {
                 type="button"
                 className="btn btn-sm btn-outline-danger row-action-delete-btn action-icon-btn"
                 onClick={deleteDepartment}
-                aria-label="Delete department"
+                aria-label="Delete expense"
                 title="Delete"
             >
                 <FiTrash2 size={16} />
@@ -86,7 +86,7 @@ const ExpenseItem = (props) => {
                     type="button"
                     className="btn btn-sm btn-success action-icon-btn"
                     onClick={saveDepartmentName}
-                    aria-label="Save department name"
+                    aria-label="Save expense name"
                     title="Save"
                 >
                     <FiCheck size={16} />
@@ -96,7 +96,7 @@ const ExpenseItem = (props) => {
                     type="button"
                     className="btn btn-sm btn-outline-info action-icon-btn"
                     onClick={() => setIsEditing(true)}
-                    aria-label="Edit department"
+                    aria-label="Edit expense"
                     title="Edit"
                 >
                     <FiEdit2 size={16} />

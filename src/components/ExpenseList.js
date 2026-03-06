@@ -22,7 +22,7 @@ const ExpenseList = () => {
           <thead>
             <tr>
               <th scope="col">Actions</th>
-              <th scope="col">Department</th>
+              <th scope="col">Expenses</th>
               <th scope="col">Allocation</th>
             </tr>
           </thead>

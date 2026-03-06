@@ -32,8 +32,8 @@ const HelpButton = () => {
                         </div>
                         <div className='help-modal-body'>
                             <p className='mb-2'>1. Set the total budget first.</p>
-                            <p className='mb-2'>2. Add allocations for each department.</p>
-                            <p className='mb-0'>3. Use Settings to rename, add, or delete departments.</p>
+                            <p className='mb-2'>2. Add allocations for each expense.</p>
+                            <p className='mb-0'>3. Use Settings to rename, add, or delete expenses.</p>
                         </div>
                     </div>
                 </div>

@@ -24,17 +24,17 @@ const AddDepartmentButton = () => {
             type='button'
             className='btn btn-outline-secondary btn-sm d-inline-flex align-items-center justify-content-center'
             onClick={() => setIsOpen(true)}
-            aria-label='Add department'
-            title='Add department'
+            aria-label='Add expense'
+            title='Add expense'
         >
             <FiPlus size={18} />
         </button>
 
         {isOpen && (
-            <div className='add-modal-backdrop' role='dialog' aria-modal='true' aria-label='Add department'>
+            <div className='add-modal-backdrop' role='dialog' aria-modal='true' aria-label='Add expense'>
                 <div className='add-modal-card shadow-lg'>
                     <div className='add-modal-header'>
-                        <h5 className='mb-0'>Add Department</h5>
+                        <h5 className='mb-0'>Add Expense</h5>
                         <button
                             type='button'
                             className='add-close-btn'
@@ -45,7 +45,7 @@ const AddDepartmentButton = () => {
                         </button>
                     </div>
                     <div className='add-modal-body'>
-                        <label htmlFor='new-department-name' className='small d-block mb-2'>Department name</label>
+                        <label htmlFor='new-department-name' className='small d-block mb-2'>Expense name</label>
                         <input
                             id='new-department-name'
                             type='text'

@@ -100,7 +100,7 @@ export const AppReducer = (state, action) => {
             if (!trimmedName) {
                 return {
                     ...state,
-                    message: 'Department name cannot be empty.',
+                    message: 'Expense name cannot be empty.',
                 };
             }
 
@@ -111,7 +111,7 @@ export const AppReducer = (state, action) => {
             if (duplicate) {
                 return {
                     ...state,
-                    message: 'Department name already exists.',
+                    message: 'Expense name already exists.',
                 };
             }
 
@@ -131,7 +131,7 @@ export const AppReducer = (state, action) => {
             if (!trimmedName) {
                 return {
                     ...state,
-                    message: 'Department name cannot be empty.',
+                    message: 'Expense name cannot be empty.',
                 };
             }
 
@@ -142,7 +142,7 @@ export const AppReducer = (state, action) => {
             if (duplicate) {
                 return {
                     ...state,
-                    message: 'Department name already exists.',
+                    message: 'Expense name already exists.',
                 };
             }
 
@@ -164,7 +164,7 @@ export const AppReducer = (state, action) => {
             if (state.expenses.length <= 1) {
                 return {
                     ...state,
-                    message: 'At least one department is required.',
+                    message: 'At least one expense is required.',
                 };
             }
 
@@ -197,7 +197,7 @@ export const AppReducer = (state, action) => {
                 return {
                     ...state,
                     confirmDelete: null,
-                    message: 'At least one department is required.',
+                    message: 'At least one expense is required.',
                 };
             }
 
@@ -239,11 +239,10 @@ export const AppReducer = (state, action) => {
 const initialState = {
     budget: 0,
     expenses: [
-        { id: 'Marketing', name: 'Marketing', cost: 0 },
-        { id: 'Finance', name: 'Finance', cost: 0 },
-        { id: 'Sales', name: 'Sales', cost: 0 },
-        { id: 'Human Resource', name: 'Human Resource', cost: 0 },
-        { id: 'IT', name: 'IT', cost: 0 },
+        { id: 'Housing & Utilities', name: 'Housing & Utilities', cost: 0 },
+        { id: 'Transportation', name: 'Transportation', cost: 0 },
+        { id: 'Personal & Health', name: 'Personal & Health', cost: 0 },
+        { id: 'Debt & Finance', name: 'Debt & Finance', cost: 0 },
     ],
     currency: '$',
     currencies: [
@@ -256,7 +255,7 @@ const initialState = {
     confirmDelete: null,
 };
 
-const STORAGE_KEY = 'budget_allocation_state_v1';
+const STORAGE_KEY = 'budget_allocation_state_v2';
 
 const getInitialState = () => {
     if (typeof window === 'undefined') {

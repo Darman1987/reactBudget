@@ -1,35 +1,47 @@
-# 💰 Budget Allocation App (React)
+# Budget Allocation App (React)
 
-This is a simple and interactive **Budget Allocation App** built with **React.js**. It allows users to manage their budget by allocating funds across different departments, updating allocations, and visualizing the remaining budget in real-time.
+A React app to manage a total budget and allocate amounts across custom expense categories.
 
----
+## Features
 
+- Set and edit a total budget with numeric-only input handling.
+- Cycle the budget currency symbol directly from the budget card.
+- View live summary cards for budget, spent amount, and remaining amount.
+- Highlight remaining budget as a warning style when spending exceeds the total budget.
+- Edit allocation values per expense in a table-based interface.
+- Add new expense categories from an "Add Expense" modal.
+- Rename existing categories inline.
+- Delete categories with a confirmation popup.
+- Prevent deleting the last remaining category.
+- Reset all values (budget and allocations) with one action.
+- Show validation/error popups for invalid actions (duplicate/empty names, etc.).
+- Persist budget, currency, and allocations in `localStorage`.
 
+## Tech Stack
 
-## 🚀 Features
+- React (hooks + context/reducer state)
+- Bootstrap 5
+- React Icons
 
-- Set a total budget
-- Allocate budget amounts to multiple departments
-- Adjust or reduce allocations
-- View remaining budget instantly
-- Alerts when allocations exceed the total budget
-- Responsive and clean UI using Bootstrap or custom CSS
+## Getting Started
 
----
+1. Install dependencies:
 
-## 🛠️ Tech Stack
+```bash
+npm install
+```
 
-- **React** (Functional components + Hooks)
-- **Context API** for global state management
-- **Bootstrap** for UI (optional)
-- **JavaScript (ES6+)**
-- **CSS3**
+2. Start the development server:
 
----
+```bash
+npm start
+```
 
-## 📦 Installation
+3. Open `http://localhost:3000`.
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/Darman1987/reactBudget.git
+## Scripts
 
+- `npm start` - Run the app in development mode.
+- `npm test` - Run tests.
+- `npm run build` - Create a production build.
+- `npm run deploy` - Deploy to GitHub Pages.
